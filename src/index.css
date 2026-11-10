@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-slate-50 font-sans text-ink antialiased; }
+  [dir='rtl'] { font-family: 'Segoe UI', 'Noto Sans Arabic', Tahoma, system-ui, sans-serif; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-teal-600; }
+}
+
+@layer components {
+  .card { @apply rounded-2xl border border-slate-200/80 bg-white shadow-card; }
+  .card-pad { @apply p-4 sm:p-6; }
+
+  .label { @apply mb-1 block text-sm font-medium text-slate-700; }
+  /* text-base (16px) stops iOS Safari from zooming into focused inputs */
+  .field {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base text-ink shadow-sm transition
+           placeholder:text-slate-400 focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600/25;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition
+           disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-primary { @apply btn bg-gradient-to-b from-brand-600 to-brand-700 text-white shadow-sm hover:from-brand-700 hover:to-brand-800; }
+  .btn-secondary { @apply btn border border-brand-200 bg-white text-brand-700 hover:bg-brand-50; }
+  .btn-ghost { @apply btn text-slate-600 hover:bg-slate-100; }
+}
+
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body { background: #fff; }
+  .card { box-shadow: none; }
+  .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+}
